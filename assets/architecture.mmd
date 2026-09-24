@@ -1,0 +1,27 @@
+graph TD
+    User[Operations / Finance User] -->|Web| UI[Single-page web app]
+    UI -->|REST| API[FastAPI on Cloud Run]
+
+    subgraph Core
+        API --> Masters[(Masters)]
+        API --> Movements[(Movements)]
+        API --> Adjustments[(Adjustments)]
+        API --> Settlements[(Settlements)]
+        API --> Invoices[(Invoices)]
+    end
+
+    subgraph Compute
+        Calc[Settlement engine] --> RateRules[Rate rules]
+        Calc --> PDF[PDF generator]
+        Scheduler[Nightly scheduler] --> Calc
+    end
+
+    subgraph Storage
+        PDF --> ObjectStorage[Object storage for PDFs]
+        Attachments[Adjustment attachments] --> ObjectStorage
+        API --> ReadModel[(Read model cache)]
+    end
+
+    subgraph MultiCountry
+        CountryA[Country A instance] -->|Same code, different currency| CountryB[Country B instance]
+    end
