@@ -96,11 +96,11 @@ graph TD
 ## What makes the design interesting
 
 1. **Rate engine by agreement.** Each contractor can have a daily rate, a per-route rate, or a mixed agreement. The engine picks the active agreement for each movement date.
-2. **Session drafts.** Forms keep a temporary draft for 15 minutes so users do not lose in-progress entries if they switch screens.
-3. **PDF word-wrap guard.** A specific fix prevents long route codes or adjustment reasons from overflowing columns in generated annexes.
-4. **Read-model feature flag.** A Firestore cache reduces UI list latency. If the cache misbehaves, a feature flag disables it without a redeploy.
-5. **Multi-country clone.** The platform was duplicated for a second country with a different currency format (two decimals) and fewer active depots. The core logic stayed the same.
-6. **Invoice-to-annex matching.** Billing v2 links supplier invoices to one or more settlement annexes and validates that the total matches before marking the invoice as ready.
+2. **Session drafts.** Forms keep a temporary draft so users do not lose in-progress entries if they switch screens.
+3. **PDF layout guard.** Long route codes or adjustment reasons are wrapped so they do not overflow columns in generated annexes.
+4. **Read-model cache.** A document cache reduces UI list latency. If the cache misbehaves, a feature flag disables it without a redeploy.
+5. **Multi-country clone.** The platform was duplicated for a second country with a different currency format and fewer active depots. The core logic stayed the same.
+6. **Invoice-to-settlement matching.** Supplier invoices are linked to settlement annexes and validated before marking the invoice as ready.
 
 ---
 
